@@ -154,7 +154,7 @@ static void php_freeimage_dtor() {
  *
  * Every user visible function must have an entry in freeimage_functions[].
  */
-function_entry freeimage_functions[] = {
+zend_function_entry freeimage_functions[] = {
 	/* Support for RGBQUAD */
 	PHP_FE(freeimage_rgbquad,				NULL)
 	/* Bitmap management functions */
