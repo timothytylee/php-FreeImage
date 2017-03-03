@@ -1,0 +1,125 @@
+$Id: readme,v 1.4 2004/07/22 13:32:54 wenlong Exp $
+Introduction:
+=============
+This extension is a wrapper for the FreeImage (http://freeimage.sourceforge.net)
+library that allows PHP to support popular graphics image fromats like GIF, PNG,
+BMP, JPEG, TIFF, PSD, XPM and others as needed by today's multimedia application.
+
+
+Important:
+==========
+This extension is very experimental, its functions may change their names 
+or move to extension all together so do not rely to much on them you have been warned!
+This software uses the FreeImage open source image library. See
+http://freeimage.sourceforge.net for details. FreeImage is used under the FIPL, version 1.0. 
+
+
+Prerequisites:
+==============
+1) FreeImage version 3.4.0 or later must be installed. Latest version can be obtained thru 
+   http://freeimage.sourceforge.net
+
+
+Installation:
+=============
+Linux:
+    1. Building the FreeImage extension requires, then compile it use:
+
+       unzip FreeImage340.zip
+       cd FreeImage
+       make
+       make install
+       cd Dist
+       cp FreeImage.h /usr/include
+
+    2. Compile this extension
+       phpize
+       ./configure
+       make
+       make install
+
+    3. config php.ini
+       Example:
+          extension=php_freeimage.so
+
+Windows:
+    1. This extension need freeimage.dll to work. Copy the bundled DLLs to your 
+       Windows PATH, safe places are: 
+          c:\windows\system for Windows 9x/Me 
+          c:\winnt\system32 for Windows NT/2000 
+          c:\windows\system32 for Windows XP 
+
+    2. Compile this extension, then copy php_freeimage.dll into your extension_dir
+       (eg: c:/php/extensions/)
+       msdev freeimage.dsp /MAKE "freeimage - Win32 Release_TS"
+       or: (for PHP5 only)
+       buildconf
+       cscript /nologo configure.js --with-freeimage=shared
+       nmake
+
+    3. Enable the extension in php.ini you want to use by uncommenting the 
+       extension=php_freeimage.dll lines in php.ini. This is done by deleting 
+       the leading ; form the extension you want to load. 
+       Example:
+          extension=php_bz2.dll
+          ...
+          extension=php_freeimage.dll
+
+
+Usage:
+======
+Both a procedural and an OO API is provided. eg.
+
+Procedural:
+-----------
+<?php
+printf("FreeImage Version %s<br>%s<br><br>", FreeImage_GetVersion(), 
+	FreeImage_GetCopyrightMessage());
+for ($i=0; $i<FreeImage_GetFIFCount(); $i++) {
+	printf("<b>Bitmap type %d:</b> <u>%s</u> (%s)<br>", $i, 
+		FreeImage_GetFIFDescription($i), FreeImage_GetFIFExtensionList($i));
+	echo str_repeat('&nbsp;', 17);
+	if (FreeImage_FIFSupportsReading($i)) {
+		echo 'Read: <font color="green"><b>OK</b></font>';
+	} else {
+		echo 'Read: <font color="red"><b>FAILURE</b></font>';
+	}
+	if (FreeImage_FIFSupportsWriting($i)) {
+		echo ' - Write: <font color="green"><b>OK</b></font><br>';
+	} else {
+		echo ' - Write: <font color="red"><b>FAILURE</b></font><br>';
+	}
+}
+?>
+
+OO:
+---
+<?php
+$fi = new FreeImage();
+printf("FreeImage Version %s<br>%s<br><br>", $fi->GetVersion(), 
+	$fi->GetCopyrightMessage());
+for ($i=0; $i<$fi->GetFIFCount(); $i++) {
+	printf("<b>Bitmap type %d:</b> <u>%s</u> (%s)<br>", $i, 
+		$fi->GetFIFDescription($i), $fi->GetFIFExtensionList($i));
+	echo str_repeat('&nbsp;', 17);
+	if ($fi->FIFSupportsReading($i)) {
+		echo 'Read: <font color="green"><b>OK</b></font>';
+	} else {
+		echo 'Read: <font color="red"><b>FAILURE</b></font>';
+	}
+	if ($fi->FIFSupportsWriting($i)) {
+		echo ' - Write: <font color="green"><b>OK</b></font><br>';
+	} else {
+		echo ' - Write: <font color="red"><b>FAILURE</b></font><br>';
+	}
+}
+?>
+
+You can see some other various samples in the "examples/" directory.
+
+
+Contact:
+========
+If there are any questions or problems, feel free to contact us:
+Wenlong Wu <ezdevelop@hotmail.com>
+Noon <noon@ms8.url.com.tw>
