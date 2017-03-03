@@ -1,0 +1,14 @@
+// $Id: config.w32,v 1.1 2004/07/22 13:32:54 wenlong Exp $
+// vim:ft=javascript
+
+ARG_WITH("freeimage", "FreeImage Support", "no");
+
+if (PHP_FREEIMAGE != "no") {
+	if (CHECK_HEADER_ADD_INCLUDE("FreeImage.h", "CFLAGS_FREEIMAGE", PHP_FREEIMAGE) &&
+				CHECK_LIB("FreeImage.lib", "freeimage", PHP_FREEIMAGE)) {
+		EXTENSION("freeimage", "freeimage.c freeimage_io.c", PHP_FREEIMAGE_SHARED, null, "php_freeimage.dll");
+		AC_DEFINE('HAVE_FREEIMAGE', 1, 'FreeImage support');
+	} else {
+		WARNING("freeimage not enabled; libraries and headers not found");
+	}
+}
