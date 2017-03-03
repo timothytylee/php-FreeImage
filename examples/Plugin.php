@@ -17,7 +17,7 @@ for ($i=0; $i<FreeImage_GetFIFCount(); $i++) {
 }
 
 // OO API
-
+/*
 $fi = new FreeImage();
 printf("FreeImage Version %s<br>%s<br><br>", $fi->GetVersion(), $fi->GetCopyrightMessage());
 for ($i=0; $i<$fi->GetFIFCount(); $i++) {

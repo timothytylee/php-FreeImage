@@ -16,7 +16,7 @@
   |          Noon       <noon@ms8.url.com.tw>                            |
   +----------------------------------------------------------------------+
 
-  $Id: php_freeimage.h,v 1.4 2004/07/22 13:32:54 wenlong Exp $ 
+  $Id: php_freeimage.h,v 1.5 2008/03/31 09:38:34 sfox Exp $ 
 */
 
 #ifndef PHP_FREEIMAGE_H
@@ -35,7 +35,7 @@ extern zend_module_entry freeimage_module_entry;
 #include "TSRM.h"
 #endif
 
-#define PECL_FREEIMAGE_VERSION		"0.1-dev"
+#define PECL_FREEIMAGE_VERSION		"0.2.0-dev"
 #define PECL_FREEIMAGE_AUTHOR		"Wenlong Wu <ezdevelop@hotmail.com>"
 
 PHP_MINIT_FUNCTION(freeimage);
@@ -45,6 +45,8 @@ PHP_RSHUTDOWN_FUNCTION(freeimage);
 PHP_MINFO_FUNCTION(freeimage);
 
 PHP_FUNCTION(freeimage_constructor);
+/* Support for RGBQUAD */
+PHP_FUNCTION(freeimage_rgbquad);
 /* Bitmap management functions */
 PHP_FUNCTION(freeimage_load);
 PHP_FUNCTION(freeimage_save);
@@ -110,6 +112,30 @@ PHP_FUNCTION(freeimage_lockpage);
 PHP_FUNCTION(freeimage_unlockpage);
 PHP_FUNCTION(freeimage_movepage);
 PHP_FUNCTION(freeimage_getlockedpagenumbers);
+/* Metadata functions */
+PHP_FUNCTION(freeimage_createtag);
+PHP_FUNCTION(freeimage_deletetag);
+PHP_FUNCTION(freeimage_clonetag);
+PHP_FUNCTION(freeimage_gettagkey);
+PHP_FUNCTION(freeimage_gettagdescription);
+PHP_FUNCTION(freeimage_gettagid);
+PHP_FUNCTION(freeimage_gettagtype);
+PHP_FUNCTION(freeimage_gettagcount);
+PHP_FUNCTION(freeimage_gettagvalue);
+PHP_FUNCTION(freeimage_settagkey);
+PHP_FUNCTION(freeimage_settagdescription);
+PHP_FUNCTION(freeimage_settagid);
+PHP_FUNCTION(freeimage_settagtype);
+PHP_FUNCTION(freeimage_settagcount);
+PHP_FUNCTION(freeimage_settagvalue);
+PHP_FUNCTION(freeimage_findfirstmetadata);
+PHP_FUNCTION(freeimage_findnextmetadata);
+PHP_FUNCTION(freeimage_findclosemetadata);
+PHP_FUNCTION(freeimage_findtag);
+PHP_FUNCTION(freeimage_getmetadata);
+PHP_FUNCTION(freeimage_setmetadata);
+PHP_FUNCTION(freeimage_getmetadatacount);
+PHP_FUNCTION(freeimage_tagtostring);
 
 
 ZEND_BEGIN_MODULE_GLOBALS(freeimage)

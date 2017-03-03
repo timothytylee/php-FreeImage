@@ -1,4 +1,4 @@
-$Id: readme,v 1.4 2004/07/22 13:32:54 wenlong Exp $
+$Id: readme,v 1.5 2004/08/04 10:37:11 wenlong Exp $
 Introduction:
 =============
 This extension is a wrapper for the FreeImage (http://freeimage.sourceforge.net)
@@ -16,7 +16,7 @@ http://freeimage.sourceforge.net for details. FreeImage is used under the FIPL, 
 
 Prerequisites:
 ==============
-1) FreeImage version 3.4.0 or later must be installed. Latest version can be obtained thru 
+1) FreeImage version 3.11.0 or later must be installed. Latest version can be obtained thru 
    http://freeimage.sourceforge.net
 
 
@@ -25,7 +25,7 @@ Installation:
 Linux:
     1. Building the FreeImage extension requires, then compile it use:
 
-       unzip FreeImage340.zip
+       unzip FreeImage3110.zip
        cd FreeImage
        make
        make install
